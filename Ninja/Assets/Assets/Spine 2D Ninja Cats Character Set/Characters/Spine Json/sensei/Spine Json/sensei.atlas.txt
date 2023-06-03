@@ -1,0 +1,146 @@
+
+sensei.png
+size: 1147,389
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_r
+  rotate: false
+  xy: 963, 282
+  size: 181, 105
+  orig: 181, 105
+  offset: 0, 0
+  index: -1
+beard
+  rotate: true
+  xy: 317, 62
+  size: 325, 273
+  orig: 325, 273
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 727, 149
+  size: 238, 234
+  orig: 238, 234
+  offset: 0, 0
+  index: -1
+collar
+  rotate: false
+  xy: 317, 7
+  size: 112, 53
+  orig: 112, 53
+  offset: 0, 0
+  index: -1
+ear_hair
+  rotate: true
+  xy: 431, 7
+  size: 53, 48
+  orig: 53, 48
+  offset: 0, 0
+  index: -1
+ear_l
+  rotate: true
+  xy: 713, 10
+  size: 131, 101
+  orig: 131, 101
+  offset: 0, 0
+  index: -1
+ear_r
+  rotate: true
+  xy: 592, 2
+  size: 139, 119
+  orig: 139, 119
+  offset: 0, 0
+  index: -1
+eye_l
+  rotate: true
+  xy: 38, 19
+  size: 27, 11
+  orig: 27, 11
+  offset: 0, 0
+  index: -1
+eye_r
+  rotate: true
+  xy: 26, 9
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: -1
+eyebrow_l
+  rotate: true
+  xy: 1080, 97
+  size: 89, 62
+  orig: 89, 62
+  offset: 0, 0
+  index: -1
+eyebrow_r
+  rotate: false
+  xy: 1050, 12
+  size: 95, 71
+  orig: 95, 71
+  offset: 0, 0
+  index: -1
+hand_holding
+  rotate: true
+  xy: 977, 2
+  size: 81, 71
+  orig: 81, 71
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 29, 48
+  size: 339, 286
+  orig: 339, 286
+  offset: 0, 0
+  index: -1
+key
+  rotate: true
+  xy: 592, 143
+  size: 244, 133
+  orig: 244, 133
+  offset: 0, 0
+  index: -1
+moustache
+  rotate: true
+  xy: 816, 4
+  size: 143, 159
+  orig: 143, 159
+  offset: 0, 0
+  index: -1
+nose
+  rotate: true
+  xy: 2, 4
+  size: 33, 22
+  orig: 33, 22
+  offset: 0, 0
+  index: -1
+pupil
+  rotate: true
+  xy: 38, 3
+  size: 14, 22
+  orig: 14, 22
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 2, 39
+  size: 348, 25
+  orig: 348, 25
+  offset: 0, 0
+  index: -1
+stick
+  rotate: true
+  xy: 977, 188
+  size: 92, 163
+  orig: 92, 163
+  offset: 0, 0
+  index: -1
+vfx/shine-effect
+  rotate: false
+  xy: 977, 85
+  size: 101, 101
+  orig: 101, 101
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,230 @@
+
+kunoichi.png
+size: 699,1031
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: false
+  xy: 90, 3
+  size: 140, 114
+  orig: 140, 114
+  offset: 0, 0
+  index: -1
+arm_r
+  rotate: false
+  xy: 228, 469
+  size: 110, 151
+  orig: 110, 151
+  offset: 0, 0
+  index: -1
+arm_r_wall
+  rotate: false
+  xy: 2, 26
+  size: 86, 165
+  orig: 86, 165
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 325, 286
+  size: 208, 147
+  orig: 208, 147
+  offset: 0, 0
+  index: -1
+body_back
+  rotate: false
+  xy: 2, 561
+  size: 224, 161
+  orig: 224, 163
+  offset: 0, 0
+  index: -1
+ear_l
+  rotate: false
+  xy: 217, 119
+  size: 102, 140
+  orig: 102, 140
+  offset: 0, 0
+  index: -1
+ear_r
+  rotate: false
+  xy: 563, 475
+  size: 105, 155
+  orig: 105, 155
+  offset: 0, 0
+  index: -1
+eye_l
+  rotate: false
+  xy: 232, 10
+  size: 87, 107
+  orig: 87, 107
+  offset: 0, 0
+  index: -1
+eye_r
+  rotate: false
+  xy: 535, 256
+  size: 158, 110
+  orig: 158, 110
+  offset: 0, 0
+  index: -1
+eyelid_l_bottom
+  rotate: false
+  xy: 625, 198
+  size: 68, 56
+  orig: 68, 56
+  offset: 0, 0
+  index: -1
+eyelid_l_top
+  rotate: false
+  xy: 90, 124
+  size: 69, 67
+  orig: 69, 67
+  offset: 0, 0
+  index: -1
+eyelid_r_bottom
+  rotate: false
+  xy: 521, 137
+  size: 102, 53
+  orig: 102, 53
+  offset: 0, 0
+  index: -1
+eyelid_r_top
+  rotate: false
+  xy: 521, 192
+  size: 102, 62
+  orig: 102, 62
+  offset: 0, 0
+  index: -1
+hair
+  rotate: false
+  xy: 343, 435
+  size: 218, 195
+  orig: 218, 195
+  offset: 0, 0
+  index: -1
+hair_band
+  rotate: false
+  xy: 217, 360
+  size: 106, 107
+  orig: 106, 107
+  offset: 0, 0
+  index: -1
+hand_holding
+  rotate: false
+  xy: 625, 109
+  size: 60, 87
+  orig: 60, 87
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 353, 746
+  size: 326, 283
+  orig: 326, 283
+  offset: 0, 0
+  index: -1
+head_back
+  rotate: false
+  xy: 2, 724
+  size: 349, 305
+  orig: 349, 305
+  offset: 0, 0
+  index: -1
+hips
+  rotate: false
+  xy: 321, 143
+  size: 193, 37
+  orig: 193, 37
+  offset: 0, 0
+  index: -1
+leg_back
+  rotate: false
+  xy: 217, 261
+  size: 104, 97
+  orig: 104, 97
+  offset: 0, 0
+  index: -1
+leg_l_side
+  rotate: false
+  xy: 321, 20
+  size: 101, 87
+  orig: 101, 87
+  offset: 0, 0
+  index: -1
+leg_r_side
+  rotate: false
+  xy: 424, 2
+  size: 101, 87
+  orig: 101, 87
+  offset: 0, 0
+  index: -1
+mask
+  rotate: false
+  xy: 353, 632
+  size: 324, 112
+  orig: 324, 112
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: false
+  xy: 506, 91
+  size: 60, 44
+  orig: 60, 44
+  offset: 0, 0
+  index: -1
+other/lever-stick
+  rotate: false
+  xy: 681, 962
+  size: 16, 67
+  orig: 16, 67
+  offset: 0, 0
+  index: -1
+other/levere-base
+  rotate: false
+  xy: 424, 91
+  size: 80, 50
+  orig: 80, 50
+  offset: 0, 0
+  index: -1
+pupil_l
+  rotate: false
+  xy: 568, 77
+  size: 29, 58
+  orig: 29, 58
+  offset: 0, 0
+  index: -1
+pupil_r
+  rotate: false
+  xy: 161, 132
+  size: 34, 59
+  orig: 34, 59
+  offset: 0, 0
+  index: -1
+shuriken
+  rotate: false
+  xy: 563, 368
+  size: 105, 105
+  orig: 105, 105
+  offset: 0, 0
+  index: -1
+tail
+  rotate: false
+  xy: 228, 622
+  size: 113, 100
+  orig: 138, 108
+  offset: 11, 8
+  index: -1
+vfx/air-roll-trail
+  rotate: false
+  xy: 323, 182
+  size: 196, 102
+  orig: 196, 102
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 2, 193
+  size: 213, 366
+  orig: 213, 366
+  offset: 0, 0
+  index: -1

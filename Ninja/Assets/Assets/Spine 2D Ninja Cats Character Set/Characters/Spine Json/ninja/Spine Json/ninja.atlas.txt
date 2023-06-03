@@ -1,0 +1,258 @@
+
+ninja.png
+size: 809,1031
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: false
+  xy: 589, 172
+  size: 140, 114
+  orig: 140, 114
+  offset: 0, 0
+  index: -1
+arm_r
+  rotate: false
+  xy: 574, 433
+  size: 110, 151
+  orig: 110, 151
+  offset: 0, 0
+  index: -1
+arm_r_wall
+  rotate: true
+  xy: 339, 78
+  size: 86, 165
+  orig: 86, 165
+  offset: 0, 0
+  index: -1
+band
+  rotate: false
+  xy: 377, 701
+  size: 353, 49
+  orig: 353, 49
+  offset: 0, 0
+  index: -1
+band_tail_a
+  rotate: true
+  xy: 2, 2
+  size: 66, 149
+  orig: 66, 149
+  offset: 0, 0
+  index: -1
+band_tail_b
+  rotate: true
+  xy: 589, 139
+  size: 31, 132
+  orig: 31, 132
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 339, 270
+  size: 209, 147
+  orig: 209, 147
+  offset: 0, 0
+  index: -1
+body_back
+  rotate: false
+  xy: 348, 419
+  size: 224, 165
+  orig: 224, 165
+  offset: 0, 0
+  index: -1
+ear_l
+  rotate: true
+  xy: 707, 789
+  size: 127, 98
+  orig: 127, 98
+  offset: 0, 0
+  index: -1
+ear_r
+  rotate: true
+  xy: 589, 288
+  size: 143, 119
+  orig: 143, 119
+  offset: 0, 0
+  index: -1
+eye_l
+  rotate: true
+  xy: 339, 2
+  size: 74, 98
+  orig: 74, 98
+  offset: 0, 0
+  index: -1
+eye_r
+  rotate: true
+  xy: 707, 918
+  size: 111, 100
+  orig: 111, 100
+  offset: 0, 0
+  index: -1
+eyelid_l_bottom
+  rotate: false
+  xy: 731, 168
+  size: 68, 56
+  orig: 68, 56
+  offset: 0, 0
+  index: -1
+eyelid_l_top
+  rotate: true
+  xy: 439, 7
+  size: 69, 67
+  orig: 69, 67
+  offset: 0, 0
+  index: -1
+eyelid_r_bottom
+  rotate: false
+  xy: 686, 433
+  size: 102, 53
+  orig: 102, 53
+  offset: 0, 0
+  index: -1
+eyelid_r_top
+  rotate: true
+  xy: 731, 226
+  size: 102, 62
+  orig: 102, 62
+  offset: 0, 0
+  index: -1
+hand_holding
+  rotate: true
+  xy: 153, 2
+  size: 60, 87
+  orig: 60, 87
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 377, 752
+  size: 328, 277
+  orig: 328, 277
+  offset: 0, 0
+  index: -1
+head_back
+  rotate: false
+  xy: 2, 718
+  size: 373, 311
+  orig: 373, 311
+  offset: 0, 0
+  index: -1
+hips
+  rotate: true
+  xy: 550, 224
+  size: 193, 37
+  orig: 193, 37
+  offset: 0, 0
+  index: -1
+hood
+  rotate: false
+  xy: 2, 435
+  size: 344, 281
+  orig: 344, 281
+  offset: 0, 0
+  index: -1
+knot
+  rotate: false
+  xy: 732, 731
+  size: 75, 56
+  orig: 75, 56
+  offset: 0, 0
+  index: -1
+leg_back
+  rotate: true
+  xy: 686, 488
+  size: 104, 97
+  orig: 104, 97
+  offset: 0, 0
+  index: -1
+leg_l_side
+  rotate: true
+  xy: 710, 330
+  size: 101, 87
+  orig: 101, 87
+  offset: 0, 0
+  index: -1
+leg_r_side
+  rotate: true
+  xy: 641, 36
+  size: 101, 87
+  orig: 101, 87
+  offset: 0, 0
+  index: -1
+mask
+  rotate: false
+  xy: 348, 586
+  size: 327, 113
+  orig: 327, 113
+  offset: 0, 0
+  index: -1
+mask_red
+  rotate: true
+  xy: 209, 64
+  size: 369, 128
+  orig: 369, 128
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: true
+  xy: 242, 2
+  size: 60, 44
+  orig: 60, 44
+  offset: 0, 0
+  index: -1
+other/lever-stick
+  rotate: true
+  xy: 732, 713
+  size: 16, 67
+  orig: 16, 67
+  offset: 0, 0
+  index: -1
+other/levere-base
+  rotate: true
+  xy: 537, 142
+  size: 80, 50
+  orig: 80, 50
+  offset: 0, 0
+  index: -1
+pupil_l
+  rotate: true
+  xy: 723, 139
+  size: 27, 50
+  orig: 27, 50
+  offset: 0, 0
+  index: -1
+pupil_r
+  rotate: false
+  xy: 288, 11
+  size: 34, 51
+  orig: 34, 51
+  offset: 0, 0
+  index: -1
+shuriken
+  rotate: false
+  xy: 677, 594
+  size: 105, 105
+  orig: 105, 105
+  offset: 0, 0
+  index: -1
+tail
+  rotate: false
+  xy: 508, 12
+  size: 131, 125
+  orig: 160, 135
+  offset: 13, 10
+  index: -1
+vfx/air-roll-trail
+  rotate: false
+  xy: 339, 166
+  size: 196, 102
+  orig: 196, 102
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 2, 70
+  size: 205, 363
+  orig: 205, 363
+  offset: 0, 0
+  index: -1

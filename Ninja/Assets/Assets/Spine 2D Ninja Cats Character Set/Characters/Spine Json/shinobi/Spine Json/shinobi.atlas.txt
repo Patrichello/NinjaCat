@@ -1,0 +1,251 @@
+
+shinobi.png
+size: 1490,519
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: false
+  xy: 769, 123
+  size: 140, 115
+  orig: 140, 115
+  offset: 0, 0
+  index: -1
+arm_r
+  rotate: false
+  xy: 502, 45
+  size: 109, 150
+  orig: 109, 150
+  offset: 0, 0
+  index: -1
+arm_r_wall
+  rotate: false
+  xy: 613, 69
+  size: 86, 165
+  orig: 86, 165
+  offset: 0, 0
+  index: -1
+band
+  rotate: false
+  xy: 2, 143
+  size: 353, 61
+  orig: 353, 61
+  offset: 0, 0
+  index: -1
+band-back
+  rotate: false
+  xy: 2, 92
+  size: 353, 49
+  orig: 353, 49
+  offset: 0, 0
+  index: -1
+band_tail_a
+  rotate: false
+  xy: 701, 85
+  size: 66, 149
+  orig: 66, 149
+  offset: 0, 0
+  index: -1
+band_tail_b
+  rotate: false
+  xy: 1454, 71
+  size: 34, 131
+  orig: 34, 131
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 1256, 204
+  size: 209, 146
+  orig: 209, 146
+  offset: 0, 0
+  index: -1
+body_back
+  rotate: false
+  xy: 1256, 352
+  size: 224, 165
+  orig: 224, 165
+  offset: 0, 0
+  index: -1
+ear_l
+  rotate: false
+  xy: 769, 23
+  size: 127, 98
+  orig: 127, 98
+  offset: 0, 0
+  index: -1
+ear_r
+  rotate: false
+  xy: 357, 76
+  size: 143, 119
+  orig: 143, 119
+  offset: 0, 0
+  index: -1
+eye_l
+  rotate: false
+  xy: 701, 15
+  size: 57, 68
+  orig: 57, 68
+  offset: 0, 0
+  index: -1
+eye_r
+  rotate: false
+  xy: 278, 2
+  size: 103, 72
+  orig: 103, 72
+  offset: 0, 0
+  index: -1
+eyelid_l_bottom
+  rotate: false
+  xy: 613, 11
+  size: 67, 56
+  orig: 67, 56
+  offset: 0, 0
+  index: -1
+eyelid_l_top
+  rotate: false
+  xy: 898, 2
+  size: 69, 67
+  orig: 69, 67
+  offset: 0, 0
+  index: -1
+eyelid_r_bottom
+  rotate: false
+  xy: 911, 71
+  size: 102, 53
+  orig: 102, 53
+  offset: 0, 0
+  index: -1
+eyelid_r_top
+  rotate: false
+  xy: 383, 12
+  size: 102, 62
+  orig: 102, 62
+  offset: 0, 0
+  index: -1
+hand_holding
+  rotate: false
+  xy: 216, 2
+  size: 60, 88
+  orig: 60, 88
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 722, 240
+  size: 329, 277
+  orig: 329, 277
+  offset: 0, 0
+  index: -1
+head_back
+  rotate: false
+  xy: 2, 206
+  size: 372, 311
+  orig: 372, 311
+  offset: 0, 0
+  index: -1
+hips
+  rotate: false
+  xy: 376, 197
+  size: 193, 37
+  orig: 193, 37
+  offset: 0, 0
+  index: -1
+hood
+  rotate: false
+  xy: 376, 236
+  size: 344, 281
+  orig: 344, 281
+  offset: 0, 0
+  index: -1
+knot
+  rotate: false
+  xy: 1334, 42
+  size: 75, 56
+  orig: 75, 56
+  offset: 0, 0
+  index: -1
+leg_back
+  rotate: false
+  xy: 1146, 45
+  size: 104, 98
+  orig: 104, 98
+  offset: 0, 0
+  index: -1
+leg_l_side
+  rotate: false
+  xy: 2, 2
+  size: 105, 88
+  orig: 105, 88
+  offset: 0, 0
+  index: -1
+leg_r_side
+  rotate: false
+  xy: 109, 2
+  size: 105, 88
+  orig: 105, 88
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: false
+  xy: 1252, 2
+  size: 60, 44
+  orig: 60, 44
+  offset: 0, 0
+  index: -1
+other/lever-stick
+  rotate: false
+  xy: 969, 2
+  size: 16, 67
+  orig: 16, 67
+  offset: 0, 0
+  index: -1
+other/levere-base
+  rotate: false
+  xy: 1252, 48
+  size: 80, 50
+  orig: 80, 50
+  offset: 0, 0
+  index: -1
+pupil_l
+  rotate: false
+  xy: 1015, 102
+  size: 19, 22
+  orig: 19, 22
+  offset: 0, 0
+  index: -1
+pupil_r
+  rotate: false
+  xy: 571, 207
+  size: 15, 27
+  orig: 15, 27
+  offset: 0, 0
+  index: -1
+shuriken
+  rotate: false
+  xy: 1039, 38
+  size: 105, 105
+  orig: 105, 105
+  offset: 0, 0
+  index: -1
+tail
+  rotate: false
+  xy: 911, 126
+  size: 126, 112
+  orig: 128, 112
+  offset: 0, 0
+  index: -1
+vfx/air-roll-trail
+  rotate: false
+  xy: 1256, 100
+  size: 196, 102
+  orig: 196, 102
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: false
+  xy: 1053, 145
+  size: 201, 372
+  orig: 201, 372
+  offset: 0, 0
+  index: -1
