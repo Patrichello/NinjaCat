@@ -7,6 +7,8 @@ public class Shuriken : MonoBehaviour
     public float speed = 10f;
     public float rotationSpeed = 200f;
     private Rigidbody2D rb;
+    public int damageShuriken = 40;
+    public GameObject impactEffect;
 
     void Start()
     {
@@ -18,5 +20,16 @@ public class Shuriken : MonoBehaviour
     {
         // Вращение пули вокруг оси Z
         transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+    }
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damageShuriken);
+        }
+
+        // Instantiate(impactEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

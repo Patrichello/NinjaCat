@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1041584819065952037}
   - component: {fileID: 621701871515075733}
   - component: {fileID: 5340558027194022883}
+  - component: {fileID: -8127638959603380320}
   m_Layer: 0
   m_Name: Shuriken
   m_TagString: Untagged
@@ -119,5 +120,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b4be951c0334b42b8415ff47d96cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  rotationSpeed: 200
+  speed: 20
+  rotationSpeed: 300
+  damageShuriken: 40
+  impactEffect: {fileID: 0}
+--- !u!58 &-8127638959603380320
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305232145793256753}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5149999

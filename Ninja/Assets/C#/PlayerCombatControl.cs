@@ -33,20 +33,25 @@ public class PlayerCombatControl : MonoBehaviour
     }
     void Attack()
     {
-      
-            anim.SetTrigger("Attack");
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemy);
-
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-        }
-
+        anim.SetTrigger("Attack");
+        
+        StartCoroutine(SwordAttack());
     }
     private void OnDrawGizmosSelected()
     {
         if (attackPos == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
+    }
+    private IEnumerator SwordAttack()
+    {
+        yield return new WaitForSeconds(0.25f);
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemy);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        }
+
     }
 }

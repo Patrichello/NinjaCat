@@ -68,11 +68,6 @@ public class PlayerController : MonoBehaviour
         CheckIfCanJump();
         CheckIfWallSliding();
         UpdateAnimations();
-        if (Input.GetKey(KeyCode.M))
-        {
-            anim.SetTrigger("isAttack");
-            
-        }
 
     }
 
@@ -121,7 +116,6 @@ public class PlayerController : MonoBehaviour
         {
             isFacingRight = !isFacingRight;
             transform.Rotate(0f, 180f, 0f);
-            //wallCheckDistance = -wallCheckDistance;
         }
     }
 

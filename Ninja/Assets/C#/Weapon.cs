@@ -6,15 +6,27 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject shurikenPrefab;
-    public Animator anim;
+    private Animator anim;
     public PlayerController playerController;
-   
+
+    public float attackRate = 2f;
+    public float nextAttackTime = 0f;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L) && playerController.canJump)
+        if (Time.time >= nextAttackTime)
         {
-            Shoot();
-        } 
+            if (Input.GetKeyDown(KeyCode.L) && playerController.canJump)
+            {
+                Shoot();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+        }
+           
     }
 
     void Shoot()
@@ -22,7 +34,6 @@ public class Weapon : MonoBehaviour
       
         anim.SetTrigger("AttackShuriken");
         StartCoroutine(ShurikenAttackAnim());
-        
         
     }
     private IEnumerator ShurikenAttackAnim()
