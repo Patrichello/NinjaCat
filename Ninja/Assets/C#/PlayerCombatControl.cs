@@ -12,7 +12,7 @@ public class PlayerCombatControl : MonoBehaviour
     public LayerMask enemy;
     public float attackRange;
     public int attackDamage;
-    
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -45,13 +45,14 @@ public class PlayerCombatControl : MonoBehaviour
     }
     private IEnumerator SwordAttack()
     {
+
         yield return new WaitForSeconds(0.25f);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemy);
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+          
         }
-
     }
 }

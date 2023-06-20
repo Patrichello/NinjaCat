@@ -64,17 +64,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text dialogueText;
-    public Text nameText;
+    public TMP_Text dialogueText;
+    public TMP_Text nameText;
 
     public Animator boxAnim;
     public Animator startAnim;
 
     private Queue<string> sentences;
     private bool nextSentenceIsStudent; // Флаг, указывающий, что следующая строка должна быть от студента
+
+
+    public GameObject senseiToDisappear;
+    public bool senseiFinishTalk;
 
     private void Start()
     {
@@ -109,12 +114,12 @@ public class DialogueManager : MonoBehaviour
 
         if (nextSentenceIsStudent)
         {
-            nameText.text = "student";
+            nameText.text = "Cat Ninja";
             nextSentenceIsStudent = false;
         }
         else
         {
-            nameText.text = "teacher";
+            nameText.text = "Sensei";
 
             if (sentence.EndsWith("?"))
             {
@@ -139,5 +144,13 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         boxAnim.SetBool("boxOpen", false);
+        Debug.Log("EndDialog");
+
+        senseiFinishTalk = true;
+
+        if (senseiToDisappear != null)
+        {
+            senseiToDisappear.SetActive(false);
+        }
     }
 }

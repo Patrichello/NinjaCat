@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Wall
   - Obstacle
+  - SignInfo
+  - Key
+  - Button
+  - Shuriken
   layers:
   - Default
   - TransparentFX
@@ -17,8 +21,8 @@ TagManager:
   - Ground
   - Enemy
   - Wall
-  - 
-  - 
+  - enemyLayer
+  - NoInterract
   - 
   - 
   - 

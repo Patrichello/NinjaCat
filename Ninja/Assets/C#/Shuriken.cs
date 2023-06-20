@@ -30,6 +30,10 @@ public class Shuriken : MonoBehaviour
         }
 
         // Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(gameObject);
+        if (!hitInfo.gameObject.CompareTag("SignInfo"))
+        {
+            Destroy(gameObject);
+        }
+         
     }
 }

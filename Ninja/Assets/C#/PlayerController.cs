@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class PlayerController : MonoBehaviour
    
     private bool isFacingRight = true;
     private bool isWalking;
-    public  bool isGrounded;
+    private  bool isGrounded;
     public bool canJump;
     private bool isTouchingWall;
     private bool isWallSliding;
@@ -43,11 +45,21 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;
     public float dashDuration = 1f;
     public float dashCoolDown = 1f;
-    public bool isDash;
+    private bool isDash;
     private bool canDash = true;
     public TrailRenderer tr;
 
-    
+    public float health;
+    public int numOfHearts;
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+
+    public float knockbackForce;
+    private bool isCooldownObstacle;
+
+    private bool playerDead = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-       if (isDash)
+       if (isDash || isCooldownObstacle)
         {
             return;
         }
@@ -79,6 +91,7 @@ public class PlayerController : MonoBehaviour
         }
         ApplyMovement();
         CheckSurroundings();
+        HealthControl();
     }
    
     private void CheckSurroundings()
@@ -86,7 +99,6 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
-
     }
 
     private void CheckMovementDirection()
@@ -99,15 +111,7 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-   
-       if(Mathf.Abs(rb.velocity.x) >= 0.01f)
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }
+        isWalking = Mathf.Abs(rb.velocity.x) >= 0.01f ? true : false;
     }
  
     private void Flip()
@@ -121,21 +125,23 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInput()
     {
-        movementInputDirection = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump"))
+        if (!playerDead)
         {
-            Jump();
+            movementInputDirection = Input.GetAxisRaw("Horizontal");
 
-        }
+            if (Input.GetButtonDown("Jump"))
+            {
+                Jump();
+            }
 
-        if (Input.GetButtonUp("Jump"))
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * variableJumpHeightMultiplier);
-        }
-        if (Input.GetKeyDown(KeyCode.P) && canDash)
-        {
-            StartCoroutine(Dash());
+            if (Input.GetButtonUp("Jump"))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * variableJumpHeightMultiplier);
+            }
+            if (Input.GetKeyDown(KeyCode.P) && canDash)
+            {
+                StartCoroutine(Dash());
+            }
         }
        
     }
@@ -147,7 +153,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             amountOfJumpsLeft--;
         }
-        if (wallJump && jumpsOnTheWall > 0 && canJump)
+        if (wallJump && jumpsOnTheWall > 0 || canJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpsOnTheWall--;
@@ -161,14 +167,7 @@ public class PlayerController : MonoBehaviour
             amountOfJumpsLeft = amountOfJumps;
             jumpsOnTheWall = JumpsOnTheWallLeft;
         }
-        if (amountOfJumpsLeft <= 0)
-        {
-            canJump = false;
-        }
-        else
-        {
-            canJump = true;
-        }
+        canJump = (amountOfJumpsLeft <= 0) ? false : true;
     }
 
     private void CheckIfWallSliding()
@@ -180,7 +179,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             isWallSliding = false;
-
         }
     }
 
@@ -208,7 +206,6 @@ public class PlayerController : MonoBehaviour
 
         if (isWallSliding)
         {
-           
             if (rb.velocity.y < -wallSlideSpeed)
             {
                 rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
@@ -218,9 +215,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (wallCheck == null) return;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
 
-        Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+        Gizmos.DrawWireSphere(wallCheck.position, wallCheckDistance);
+
+       // Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
 
     private void UpdateAnimations()
@@ -229,7 +229,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
         anim.SetBool("isWallSliding", isWallSliding);
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -239,6 +238,30 @@ public class PlayerController : MonoBehaviour
             wallJump = true;
             jumpsOnTheWall = JumpsOnTheWallLeft;
         }
+
+        //
+        if (collision.gameObject.CompareTag("Obstacle") && !playerDead)
+        {
+            // Применить отскок в обратном направлении
+            Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
+            knockbackDirection.y = 0f;
+            ApplyKnockback(knockbackDirection);
+            anim.SetTrigger("damageObstacle");
+            StartCooldownDamage();
+            
+        }
+    }
+    private void StartCooldownDamage()
+    {
+        isCooldownObstacle = true;
+        StartCoroutine(ResetCooldownDamage());
+    }
+
+    private IEnumerator ResetCooldownDamage()
+    {
+        yield return new WaitForSeconds(0.5f); // Задержка в 0.5 секунды (измените значение по вашему усмотрению)
+
+        isCooldownObstacle = false;
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -254,6 +277,7 @@ public class PlayerController : MonoBehaviour
         {
             canDash = false;
             isDash = true;
+            anim.SetTrigger("dash");
             rb.velocity = new Vector2(dashSpeed * movementInputDirection, rb.velocity.y);
             tr.emitting = true;
             yield return new WaitForSeconds(dashDuration);
@@ -261,8 +285,87 @@ public class PlayerController : MonoBehaviour
             tr.emitting = false;
             yield return new WaitForSeconds(dashCoolDown);
             canDash = true;
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (!playerDead)
+        {
+            anim.SetTrigger("hurt");
+
+        }
+
+
+        if (health <= 0)
+        {
+            anim.SetBool("isDead", true);
+            Debug.Log("PlayerDead");
+            
+        }
+       
+    }
+    public void HealthControl()
+    {
+        if (health > numOfHearts)
+        {
+            health = numOfHearts;
+        }
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < Mathf.RoundToInt(health))
+            {
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeart;
+            }
+            if (i < numOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+
+            }
+            if(health < 1)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                Destroy(GetComponent<Rigidbody2D>());
+                this.enabled = false;
+
+                StartCoroutine(DieAnimation());
+            }
+            if (transform.position.y < -10)
+            {
+
+                SceneLoadDie();
+
+            }
+
 
         }
     }
- 
+    private void ApplyKnockback(Vector2 knockbackDirection)
+    {
+       
+        // Применить отскок в обратном направлении
+        rb.velocity = knockbackDirection * knockbackForce;
+
+    }
+    void SceneLoadDie()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+    private IEnumerator DieAnimation()
+    {
+        playerDead = true;
+        yield return new WaitForSeconds(3);
+        SceneLoadDie();
+
+    }
 }
