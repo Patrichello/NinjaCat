@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
     private float movementInputDirection;
 
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -113,7 +114,10 @@ public class Enemy : MonoBehaviour
         if(currentHealth <= 0)
         {
             scoreManager.Kill();
+
+
             Die();
+
         }
     }
 

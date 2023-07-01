@@ -16,4 +16,4 @@ MonoBehaviour:
   mapName: Winter
   mapDescription: Snow Winter
   mapImage: {fileID: 21300000, guid: 429517ea1b1287a47952cd5cd8261d74, type: 3}
-  sceneToLoad: {fileID: 102900000, guid: 449436b3a971c46e0af1f10cfc1bec65, type: 3}
+  sceneToLoad: {fileID: 102900000, guid: a646feb3f7a5f47c181bdf308329ae25, type: 3}

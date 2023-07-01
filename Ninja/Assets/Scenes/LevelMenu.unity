@@ -670,6 +670,7 @@ MonoBehaviour:
   scriptableObjects:
   - {fileID: 11400000, guid: c0752da388a4f41e881b9d6978ad2891, type: 2}
   - {fileID: 11400000, guid: 36497e52fd18240cca2fc44ee344262b, type: 2}
+  - {fileID: 11400000, guid: a25442af12ce3407e939c2a3d2eb2a49, type: 2}
   - {fileID: 11400000, guid: ed89c392f41f846a4ae75f26b68313a8, type: 2}
   - {fileID: 11400000, guid: e6163b90c8ebf44e3bd49206bfa23827, type: 2}
   mapDisplay: {fileID: 1079527309}

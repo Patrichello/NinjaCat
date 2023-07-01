@@ -9,13 +9,12 @@ public class MovingPlatforms : MonoBehaviour
     public Transform[] points;
 
     private int i;
-    // Start is called before the first frame update
+
     void Start()
     {
         transform.position = points[startingPoint].position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Vector2.Distance(transform.position, points[i].position) <= 0.02f)

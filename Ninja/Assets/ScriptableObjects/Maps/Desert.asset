@@ -16,4 +16,4 @@ MonoBehaviour:
   mapName: Desert
   mapDescription: Hot Desert
   mapImage: {fileID: 21300000, guid: 9d1a3e0bc36dfc9468a738d92b6e92d4, type: 3}
-  sceneToLoad: {fileID: 102900000, guid: 6fea399b00f6c4147a0c0a73c3ceaf6a, type: 3}
+  sceneToLoad: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}

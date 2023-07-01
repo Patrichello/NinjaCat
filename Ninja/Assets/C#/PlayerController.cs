@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
 
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator anim;
 
     public Transform groundCheck;
@@ -58,7 +59,11 @@ public class PlayerController : MonoBehaviour
     public float knockbackForce;
     private bool isCooldownObstacle;
 
-    private bool playerDead = false;
+    public bool playerDead = false;
+
+    private GameProgress gameProgress;
+
+    private GameOver gameOver;
 
     void Start()
     {
@@ -66,6 +71,10 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         tr = GetComponentInChildren<TrailRenderer>();
         amountOfJumpsLeft = amountOfJumps;
+
+        gameProgress = FindObjectOfType<GameProgress>();
+
+        gameOver = FindObjectOfType<GameOver>();
     }
 
     void Update()
@@ -113,7 +122,7 @@ public class PlayerController : MonoBehaviour
         }
         isWalking = Mathf.Abs(rb.velocity.x) >= 0.01f ? true : false;
     }
- 
+
     private void Flip()
     {
         if (!isWallSliding)
@@ -302,7 +311,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("isDead", true);
             Debug.Log("PlayerDead");
-            
+
         }
        
     }
@@ -338,12 +347,16 @@ public class PlayerController : MonoBehaviour
                 this.enabled = false;
 
                 StartCoroutine(DieAnimation());
+                PlayerPrefs.DeleteKey("scoreKey");
+
             }
             if (transform.position.y < -10)
             {
-
+                playerDead = true;
                 SceneLoadDie();
-
+                PlayerPrefs.DeleteKey("scoreKey");
+                gameProgress.ResetCollectedCoins(); // Сбросить индексы сохраненных монет
+                gameProgress.ActivateAllCoins(); // Активировать все игровые объекты монет
             }
 
 
@@ -358,7 +371,8 @@ public class PlayerController : MonoBehaviour
     }
     void SceneLoadDie()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameOver.GameOverMenu();
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
     private IEnumerator DieAnimation()
@@ -366,6 +380,10 @@ public class PlayerController : MonoBehaviour
         playerDead = true;
         yield return new WaitForSeconds(3);
         SceneLoadDie();
+
+        gameProgress.ResetCollectedCoins(); // Сбросить индексы сохраненных монет
+        gameProgress.ActivateAllCoins(); // Активировать все игровые объекты монет
+
 
     }
 }
