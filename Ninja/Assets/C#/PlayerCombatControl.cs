@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCombatControl : MonoBehaviour
@@ -13,36 +12,54 @@ public class PlayerCombatControl : MonoBehaviour
     public float attackRange;
     public int attackDamage;
 
+    private HealthController healthController;
+    private PlayerDash playerDash;
+
+    private bool canAttack = true;
+
     void Start()
     {
         anim = GetComponent<Animator>();
+        healthController = GetComponent<HealthController>();
+        playerDash = GetComponent<PlayerDash>();
     }
 
     void Update()
     {
-        if(Time.time >= nextAttackTime)
+        if (CanAttack())
         {
-             if (Input.GetKeyDown(KeyCode.M))
-             {
-                 Attack();
-                nextAttackTime = Time.time + 1f / attackRate;
-             }
+            if (Time.time >= nextAttackTime)
+            {
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    Attack();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
 
+            }
         }
 
     }
+
+    private bool CanAttack()
+    {
+        return canAttack && !healthController.playerDead && !playerDash.isDashing;
+    }
+
     void Attack()
     {
         anim.SetTrigger("Attack");
         
         StartCoroutine(SwordAttack());
     }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPos == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
+
     private IEnumerator SwordAttack()
     {
 

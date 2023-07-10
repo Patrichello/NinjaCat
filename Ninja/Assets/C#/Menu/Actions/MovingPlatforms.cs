@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatforms : MonoBehaviour
@@ -10,7 +8,7 @@ public class MovingPlatforms : MonoBehaviour
 
     private int i;
 
-    void Start()
+    public void Start()
     {
         transform.position = points[startingPoint].position;
     }
@@ -29,10 +27,12 @@ public class MovingPlatforms : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.transform.SetParent(transform);
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         collision.transform.SetParent(null);

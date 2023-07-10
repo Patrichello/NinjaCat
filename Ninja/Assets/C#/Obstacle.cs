@@ -1,21 +1,59 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    private PlayerController playerController;
+    private HealthController healthController;
     public int damage;
-  
+
+    private bool isPlayerOnObstacle;
+
+    private void Start()
+    {
+        healthController = FindObjectOfType<HealthController>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    HealthController health = collision.gameObject.GetComponent<HealthController>();
+        //    if (health != null)
+        //    {
+        //        health.TakeDamage(damage);
+        //    }
+        //}
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isPlayerOnObstacle = true;
+            healthController.TakeDamage(damage);
+            StartCoroutine(RepeatDamage());
+        }
+    }
+
+    private IEnumerator RepeatDamage()
+    {
+       while (isPlayerOnObstacle)
+       {
+           yield return new WaitForSeconds(3);
+
+              if (isPlayerOnObstacle)
+              {
+                  healthController.TakeDamage(damage);
+
+              }
+
+
+       }
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                player.TakeDamage(damage);
-            }
+            isPlayerOnObstacle = false;
         }
     }
+
 }

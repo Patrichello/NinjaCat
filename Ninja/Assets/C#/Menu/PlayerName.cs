@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System.Globalization;
 
 
 public class PlayerName : MonoBehaviour
@@ -29,7 +25,6 @@ public class PlayerName : MonoBehaviour
         if (!string.IsNullOrEmpty(playerName))
         {
             nameInput = true;
-       
         }
     }
 }

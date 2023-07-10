@@ -6,39 +6,38 @@ public class ScoreManager : MonoBehaviour
 {
     public int score;
     public int currentScore;
-    public TMP_Text scoreDisplay;
 
+    private ScoreDisplay scoreDisplay;
+    
     public TMP_Text nameDisplay;
     public string playerNN;
 
     private void Start()
     {
+        scoreDisplay = FindObjectOfType<ScoreDisplay>();
+
         LoadScore();
         UpdateScoreDisplay();
     }
 
     void Update()
     {
-        scoreDisplay.text = "Score: " + score.ToString();
         nameDisplay.text = "Name: " + playerNN;
     }
 
     public void Kill()
     {
-        score += 10;
-        UpdateScoreDisplay();
-        SaveScore();
-
-        if (currentScore < score)
-        {
-            currentScore = score;
-            SaveCurrentScore();
-        }
+        IncreaseScore(10);
     }
 
     public void GetCoin()
     {
-        score++;
+        IncreaseScore(1);
+    }
+
+    private void IncreaseScore(int amount)
+    {
+        score += amount;
         UpdateScoreDisplay();
         SaveScore();
 
@@ -51,7 +50,7 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreDisplay()
     {
-        scoreDisplay.text = "Score: " + score.ToString();
+        scoreDisplay.UpdateScoreDisplay(score);
     }
 
     public void SaveScore()

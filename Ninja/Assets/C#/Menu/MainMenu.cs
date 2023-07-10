@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -20,13 +17,19 @@ public class MainMenu : MonoBehaviour
         if (playerName.nameInput == true && canStart == true)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            PlayerPrefs.DeleteKey("scoreKey");
-            PlayerPrefs.DeleteKey("currentScene");
-            PlayerPrefs.DeleteKey("currentScore");
-            PlayerPrefs.SetString("playerNameKey", playerName.playerName);
-            PlayerPrefs.DeleteKey("collectedCoins");
+            ResetPlayerPrefs();
         }
     }
+
+    private void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteKey("scoreKey");
+        PlayerPrefs.DeleteKey("currentScene");
+        PlayerPrefs.DeleteKey("currentScore");
+        PlayerPrefs.SetString("playerNameKey", playerName.playerName);
+        PlayerPrefs.DeleteKey("collectedCoins");
+    }
+
     public void ConfirmInput()
     {
         canStart = true;
@@ -48,8 +51,11 @@ public class MainMenu : MonoBehaviour
 
     public void CheckScore()
     {
+        var highScores = new HighScores();
         string playerName = PlayerPrefs.GetString("playerNameKey");
         int score = PlayerPrefs.GetInt("currentScore");
-        HighScores.AddNewHighScore(playerName, score);
+       // HighScores.AddNewHighScore(playerName, score);
+        highScores.AddNewHighScore(playerName, score);
+
     }
 }

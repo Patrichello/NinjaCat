@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -8,25 +7,39 @@ public class Weapon : MonoBehaviour
     public GameObject shurikenPrefab;
     private Animator anim;
     public PlayerController playerController;
-
+    private HealthController healthController;
+    private PlayerDash playerDash;
     public float attackRate = 2f;
     public float nextAttackTime = 0f;
+
+    private bool canAttackShuriken = true;
+
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        healthController = GetComponent<HealthController>();
+        playerDash = GetComponent<PlayerDash>();
     }
     void Update()
     {
-        if (Time.time >= nextAttackTime)
+        if (CanAttackShuriken())
         {
-            if (Input.GetKeyDown(KeyCode.L) && playerController.canJump)
+
+            if (Time.time >= nextAttackTime)
             {
-                Shoot();
-                nextAttackTime = Time.time + 1f / attackRate;
+                if (Input.GetKeyDown(KeyCode.L) && playerController.canJump)
+                {
+                    Shoot();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
             }
-        }
-           
+        }      
+    }
+
+    private bool CanAttackShuriken()
+    {
+        return canAttackShuriken && !healthController.playerDead && !playerDash.isDashing;
     }
 
     void Shoot()

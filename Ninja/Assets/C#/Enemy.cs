@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public int damage;
 
     private PlayerController playerController;
+    private HealthController healthController;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -47,6 +48,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
 
         playerController = FindObjectOfType<PlayerController>();
+        healthController = FindAnyObjectByType<HealthController>();
         scoreManager = FindObjectOfType<ScoreManager>();
 
         currentHealth = maxHealth;
@@ -208,7 +210,8 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(attackDuration);
 
-        playerController.GetComponent<PlayerController>().TakeDamage(damage);
+        //playerController.GetComponent<PlayerController>().TakeDamage(damage);
+        healthController.GetComponent<HealthController>().TakeDamage(damage);
 
         isAttacking = false;
     }

@@ -11,18 +11,17 @@ public class HighScores : MonoBehaviour
     const string webURL = "http://dreamlo.com/lb/";
 
     public HighScore[] highScoreList;
-    static HighScores instance;
+    public static HighScores instance;
     DisplayHighScores highScoreDisplay;
 
-   
 
-    private void Awake()
+    void Awake()
     {
         instance = this;
         highScoreDisplay = GetComponent<DisplayHighScores>();
     }
 
-    public static void AddNewHighScore(string username, int score)
+    public void AddNewHighScore(string username, int score)
     {
         instance.StartCoroutine(instance.UploadNewHighScore(username, score));
     }
@@ -49,7 +48,7 @@ public class HighScores : MonoBehaviour
     {
         StartCoroutine("DownloadHighScoreFromDataBase");
     }
-
+    
     IEnumerator DownloadHighScoreFromDataBase()
     {
         WWW www = new WWW(webURL + publicCode + "/pipe/");
@@ -66,8 +65,8 @@ public class HighScores : MonoBehaviour
             print("Error downloading: " + www.error);
         }
     }
-
-    void FormatHighScore(string textStream)
+   
+   private void FormatHighScore(string textStream)
     {
         string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
 

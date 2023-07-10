@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -18,8 +16,6 @@ public class MapDisplay : MonoBehaviour
 
     public void DisplayMap(Map map)
     {
-
-
         mapName.text = map.mapName;
         mapDescription.text = map.mapDescription;
         mapImage.sprite = map.mapImage;
@@ -36,5 +32,4 @@ public class MapDisplay : MonoBehaviour
         playButton.onClick.AddListener(() => SceneManager.LoadScene(map.sceneToLoad.name));
     }
     
-
 }

@@ -33,11 +33,13 @@ public class FallingPlatform : MonoBehaviour
             Invoke("FallPlatform", 0.5f);
         }
     }
+
     void FallPlatform()
     {
         rb.isKinematic = false;
         Invoke("BackPlatform", 2f);
     }
+
     void BackPlatform()
     {
         rb.velocity = Vector2.zero;

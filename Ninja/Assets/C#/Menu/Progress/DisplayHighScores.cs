@@ -31,11 +31,10 @@ public class DisplayHighScores : MonoBehaviour
                 highScoreText[i].text += highScoreList[i].username + " - " + highScoreList[i].score;
             }
         }
-
        
     }
-
-    IEnumerator RefreshHighScore()
+    //
+   public IEnumerator RefreshHighScore()
     {
         while (true)
         {
