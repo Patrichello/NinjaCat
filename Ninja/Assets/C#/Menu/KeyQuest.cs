@@ -16,9 +16,9 @@ public class KeyQuest : MonoBehaviour
     }
     void Update()
     {
-        keyAmountDisplay.text = "Key Amount: " + keyAmount.ToString();
+        keyAmountDisplay.text = keyAmount.ToString();//"Key Amount: " + keyAmount.ToString();
 
-        if(keyAmount == 1)
+        if (keyAmount == 1)
         {
             keyImage.gameObject.SetActive(true);
             questComplete = true;

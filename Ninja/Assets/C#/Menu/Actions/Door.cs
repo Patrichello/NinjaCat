@@ -8,16 +8,19 @@ public class Door : MonoBehaviour
     public KeyQuest keyQuest;
     private Animator anim;
     public GameObject finish;
+    public GameObject textFinish;
     private bool finishActive;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         finish.SetActive(false);
+        textFinish.SetActive(false);
+
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N) && finishActive == true)
+        if (Input.GetKeyDown(KeyCode.E) && finishActive == true)
         {
             finish.SetActive(true);
         }
@@ -29,6 +32,7 @@ public class Door : MonoBehaviour
         {
             anim.SetBool("isOpen", true);
             finishActive = true;
+            textFinish.SetActive(true);
         }
     }
   

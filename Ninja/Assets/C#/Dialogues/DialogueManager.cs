@@ -62,7 +62,7 @@ public class DialogueManager : MonoBehaviour
         {
             nameText.text = "Sensei";
 
-            if (sentence.EndsWith("?"))
+            if (sentence.EndsWith("?") || sentence.EndsWith("!!"))
             {
                 nextSentenceIsStudent = true;
             }

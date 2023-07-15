@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour
         anim = GetComponent<Animator>();
         healthController = GetComponent<HealthController>();
         playerDash = GetComponent<PlayerDash>();
+        playerController = GetComponent<PlayerController>();
     }
     void Update()
     {
