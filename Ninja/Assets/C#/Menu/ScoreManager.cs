@@ -35,6 +35,11 @@ public class ScoreManager : MonoBehaviour
         IncreaseScore(1);
     }
 
+    public void GetStar()
+    {
+        IncreaseScore(50);
+    }
+
     private void IncreaseScore(int amount)
     {
         score += amount;

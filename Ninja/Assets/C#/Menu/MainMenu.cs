@@ -28,6 +28,12 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("currentScore");
         PlayerPrefs.SetString("playerNameKey", playerName.playerName);
         PlayerPrefs.DeleteKey("collectedCoins");
+        PlayerPrefs.DeleteKey("GetStar");
+        PlayerPrefs.DeleteKey("GetDash");
+        PlayerPrefs.DeleteKey("GetSword");
+        PlayerPrefs.DeleteKey("GetShuriken");
+        PlayerPrefs.DeleteKey("GetDoubleJump");
+
     }
 
     public void ConfirmInput()

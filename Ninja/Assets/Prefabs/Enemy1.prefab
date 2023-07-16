@@ -125,18 +125,20 @@ MonoBehaviour:
   startTimeBtwAttack: 1
   maxHealth: 3
   speed: 3
-  startStopTime: 0.7
-  normalSpeed: 0
+  startStopTime: 0.4
   damage: 1
   canAttack: 0
-  attackDuration: 0.3
+  attackDuration: 1
   attackRange: 1
   player:
     serializedVersion: 2
     m_Bits: 64
   attackPos: {fileID: 6622750101142798912}
-  moveSpots: []
-  startWaitTime: 0
+  moveSpots:
+  - {fileID: 0}
+  - {fileID: 0}
+  startWaitTime: 1
+  detectionRange: 10
 --- !u!61 &6622750100665298794
 BoxCollider2D:
   m_ObjectHideFlags: 0

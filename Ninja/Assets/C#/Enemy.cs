@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -13,10 +12,9 @@ public class Enemy : MonoBehaviour
     public float speed;
     private float stopTime;
     public float startStopTime;
-    public float normalSpeed;
+    private float normalSpeed;
     public int damage;
 
-    private PlayerController playerController;
     private HealthController healthController;
     private Rigidbody2D rb;
     private Animator anim;
@@ -40,14 +38,19 @@ public class Enemy : MonoBehaviour
     private bool isFacingRight = true;
     private float movementInputDirection;
 
+    public float detectionRange;
+    private float distanceToPlayer;
 
+    private Transform playerPos;
+    private bool isPatrol;
+    private bool damageSet;
 
     void Start()
     {
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-        playerController = FindObjectOfType<PlayerController>();
         healthController = FindAnyObjectByType<HealthController>();
         scoreManager = FindObjectOfType<ScoreManager>();
 
@@ -62,64 +65,49 @@ public class Enemy : MonoBehaviour
     {
         CheckMovementDirection();
         UpdateSpeed();
-      
-        anim.SetBool("isWalking", isWalking);
-
         UpdateAttack();
 
+        anim.SetBool("isWalking", isWalking);
+        distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
     }
 
     private void FixedUpdate()
     {
-        if (!canAttack)
+
+        if (!canAttack && distanceToPlayer > detectionRange)
         {
-            MoveToRandomSpot();
+            Patrol();
+            isPatrol = true;
         }
-        else
+        if (!canAttack && distanceToPlayer < detectionRange)
         {
-            rb.velocity = Vector2.zero;
+            Atack();
+            isPatrol = false;
         }
+
+        damageSet = false;
+        if(damageSet) rb.velocity = Vector2.zero;
+     
     }
 
     private void Flip()
     {
-            isFacingRight = !isFacingRight;
-            transform.Rotate(0f, 180f, 0f);
-    }
-
-    private void MoveToRandomSpot()
-    {
-        Vector2 direction = (moveSpots[randomSpot].position - transform.position).normalized;
-        rb.velocity = direction * speed;
-
-        if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) <= 0.2f)
-        {
-            if (waitTime <= 0)
-            {
-                randomSpot = Random.Range(0, moveSpots.Length);
-                waitTime = startWaitTime;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
-        }
+        isFacingRight = !isFacingRight;
+        transform.Rotate(0f, 180f, 0f);
     }
 
     public void TakeDamage(int damage)
     {
+        damageSet = true;
         stopTime = startStopTime;
         currentHealth -= damage;
 
         anim.SetTrigger("Hurt");
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             scoreManager.Kill();
-
-
             Die();
-
         }
     }
 
@@ -133,7 +121,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(DeleteEnemy());
     }
 
-   void UpdateSpeed()
+    void UpdateSpeed()
     {
         if (stopTime <= 0)
         {
@@ -169,6 +157,7 @@ public class Enemy : MonoBehaviour
             canAttack = true;
         }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -182,11 +171,11 @@ public class Enemy : MonoBehaviour
         Vector2 direction = (moveSpots[randomSpot].position - transform.position).normalized;
         movementInputDirection = direction.x;
 
-        if (isFacingRight && movementInputDirection < 0)
+        if (isFacingRight && movementInputDirection < 0 && isPatrol)
         {
             Flip();
         }
-        else if (!isFacingRight && movementInputDirection > 0)
+        else if (!isFacingRight && movementInputDirection > 0 && isPatrol)
         {
             Flip();
         }
@@ -198,21 +187,16 @@ public class Enemy : MonoBehaviour
     private IEnumerator DeleteEnemy()
     {
         yield return new WaitForSeconds(3.5f);
-
         Destroy(gameObject);
     }
 
     private IEnumerator AttackCoroutine()
     {
         isAttacking = true;
-        
         anim.SetTrigger("Attack");
 
         yield return new WaitForSeconds(attackDuration);
-
-        //playerController.GetComponent<PlayerController>().TakeDamage(damage);
         healthController.GetComponent<HealthController>().TakeDamage(damage);
-
         isAttacking = false;
     }
 
@@ -222,4 +206,44 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
+
+    void Patrol()
+    {
+        Vector2 direction = (moveSpots[randomSpot].position - transform.position).normalized;
+        rb.velocity = direction * speed;
+
+        if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) <= 0.2f)
+        {
+            if (waitTime <= 0)
+            {
+                randomSpot = Random.Range(0, moveSpots.Length);
+                waitTime = startWaitTime;
+            }
+            else
+            {
+                waitTime -= Time.deltaTime;
+            }
+        }
+    }
+
+    void Atack()
+    {
+        if (playerPos.position.x > transform.position.x && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (playerPos.position.x < transform.position.x && isFacingRight)
+        {
+            Flip();
+        }
+        speed *= 2;
+        rb.velocity = new Vector2(speed * GetFacingDirection(), rb.velocity.y);
+
+    }
+
+    float GetFacingDirection()
+    {
+        return isFacingRight ? 1f : -1f;
+    }
+
 }

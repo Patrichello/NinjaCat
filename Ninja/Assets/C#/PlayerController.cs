@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
     public float movementInputDirection;
     public float movementSpeed = 10f;
 
-    public float jumpForce = 1f;
-    public int amountOfJumps = 1;
+    public float jumpForce;
+    public int amountOfJumps;
     public int amountOfJumpsLeft;
 
     private bool isFacingRight = true;
@@ -162,6 +162,14 @@ public class PlayerController : MonoBehaviour
         }
         canJump = (amountOfJumpsLeft > 0);
         //canJump = (amountOfJumpsLeft <= 0) ? false : true;
+        if (PlayerPrefs.HasKey("GetDoubleJump"))
+        {
+            amountOfJumps = 3;
+        }
+        else
+        {
+            amountOfJumps = 1;
+        }
     }
 
     private void CheckIfWallSliding()
@@ -243,7 +251,7 @@ public class PlayerController : MonoBehaviour
                anim.SetTrigger("damageObstacle");
             }
         }
-       
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)

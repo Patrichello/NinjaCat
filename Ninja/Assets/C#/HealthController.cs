@@ -80,8 +80,9 @@ public class HealthController : MonoBehaviour
                 this.enabled = false;
 
                 StartCoroutine(DieAnimation());
-                PlayerPrefs.DeleteKey("scoreKey");
 
+                PlayerPrefs.DeleteKey("scoreKey");
+                PlayerPrefs.DeleteKey("GetStar");
             }
             if (transform.position.y < -10)
             {
@@ -90,7 +91,10 @@ public class HealthController : MonoBehaviour
 
                 playerDead = true;
                 SceneLoadDie();
+
                 PlayerPrefs.DeleteKey("scoreKey");
+                PlayerPrefs.DeleteKey("GetStar");
+
                 ResetCoinsAfterDie();
             }
 

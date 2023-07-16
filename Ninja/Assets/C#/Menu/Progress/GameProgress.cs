@@ -31,6 +31,7 @@ public class GameProgress : MonoBehaviour
                 coins[index].SetActive(false);
             }
         }
+
     }
 
     private void SaveProgress()
@@ -62,4 +63,6 @@ public class GameProgress : MonoBehaviour
             coin.SetActive(true);
         }
     }
+
+    
 }

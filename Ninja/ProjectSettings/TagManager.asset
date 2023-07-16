@@ -11,6 +11,11 @@ TagManager:
   - Button
   - Shuriken
   - Coin
+  - Star
+  - DashSign
+  - SwordSign
+  - ShurikenSign
+  - DoubleJump
   layers:
   - Default
   - TransparentFX
