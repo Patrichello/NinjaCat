@@ -6,7 +6,7 @@ public class Key : MonoBehaviour
 {
     private KeyQuest keyQuest;
 
-    void Start()
+    private void Start()
     {
         keyQuest = FindObjectOfType<KeyQuest>();
     }
@@ -16,7 +16,8 @@ public class Key : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             keyQuest.GetKey();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+           // Destroy(gameObject);
         }
     }
 }

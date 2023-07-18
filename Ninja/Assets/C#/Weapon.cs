@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -14,13 +16,24 @@ public class Weapon : MonoBehaviour
 
     private bool canAttackShuriken = true;
 
+    public AudioClip shurikenSound;
+    private AudioSource audioSource;
+
+    public int shurikenAmount;
+    private int shurikenAmountLeft;
+    public TMP_Text shurikenAmountDisplay;
+    public Image shurikenImage;
 
     void Start()
     {
+        shurikenAmountLeft = shurikenAmount;
+        shurikenImage.gameObject.SetActive(true);
+
         anim = GetComponent<Animator>();
         healthController = GetComponent<HealthController>();
         playerDash = GetComponent<PlayerDash>();
         playerController = GetComponent<PlayerController>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -29,13 +42,16 @@ public class Weapon : MonoBehaviour
 
             if (Time.time >= nextAttackTime)
             {
-                if (Input.GetKeyDown(KeyCode.L) && playerController.canJump)
+                if (Input.GetKeyDown(KeyCode.L) && playerController.canJump && shurikenAmountLeft > 0)
                 {
                     Shoot();
                     nextAttackTime = Time.time + 1f / attackRate;
+                    shurikenAmountLeft--;
                 }
             }
-        }      
+        }
+            shurikenAmountDisplay.text = shurikenAmountLeft.ToString();
+
     }
 
     private bool CanAttackShuriken()
@@ -54,6 +70,6 @@ public class Weapon : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         Instantiate(shurikenPrefab, firePoint.position, firePoint.rotation);
-
+        audioSource.PlayOneShot(shurikenSound);
     }
 }

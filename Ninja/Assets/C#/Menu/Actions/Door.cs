@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    public KeyQuest keyQuest;
+    private KeyQuest keyQuest;
     private Animator anim;
     public GameObject finish;
     public GameObject textFinish;
@@ -13,6 +13,7 @@ public class Door : MonoBehaviour
 
     void Start()
     {
+        keyQuest = GetComponent<KeyQuest>();
         anim = GetComponent<Animator>();
         finish.SetActive(false);
         textFinish.SetActive(false);
@@ -24,6 +25,7 @@ public class Door : MonoBehaviour
         {
             finish.SetActive(true);
         }
+      
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

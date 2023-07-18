@@ -17,11 +17,15 @@ public class PlayerCombatControl : MonoBehaviour
 
     private bool canAttack = true;
 
+    private AudioSource audioSource;
+    public AudioClip attackSound;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         healthController = GetComponent<HealthController>();
         playerDash = GetComponent<PlayerDash>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -64,6 +68,8 @@ public class PlayerCombatControl : MonoBehaviour
     {
 
         yield return new WaitForSeconds(0.25f);
+
+        audioSource.PlayOneShot(attackSound);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemy);
         foreach (Collider2D enemy in hitEnemies)

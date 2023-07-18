@@ -1,19 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOver : MonoBehaviour
 {
-    public bool gameOver;
-
     public GameObject gameOverMenu;
-
-    private PlayerController playerController;
-
-
-    private void Start()
-    {
-        playerController = FindObjectOfType<PlayerController>();
-    }
 
     public void GameOverMenu()
     {

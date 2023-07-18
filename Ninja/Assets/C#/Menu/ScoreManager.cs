@@ -12,9 +12,14 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text nameDisplay;
     public string playerNN;
 
+    private AudioSource audioSource;
+    public AudioClip coinSound;
+    public AudioClip starSound;
+
     private void Start()
     {
         scoreDisplay = FindObjectOfType<ScoreDisplay>();
+        audioSource = GetComponent<AudioSource>();
 
         LoadScore();
         UpdateScoreDisplay();
@@ -32,11 +37,13 @@ public class ScoreManager : MonoBehaviour
 
     public void GetCoin()
     {
+        audioSource.PlayOneShot(coinSound);
         IncreaseScore(1);
     }
 
     public void GetStar()
     {
+        audioSource.PlayOneShot(starSound);
         IncreaseScore(50);
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerGetAbilities : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerGetAbilities : MonoBehaviour
     private PlayerCombatControl playerCombatControlScript;
     private Weapon weaponScript;
     private PlayerController playerControllerScript;
+    public Image shurikenImage;
 
     void Start()
     {
@@ -27,10 +29,13 @@ public class PlayerGetAbilities : MonoBehaviour
         if (!PlayerPrefs.HasKey("GetShuriken"))
         {
             weaponScript.enabled = false;
+            shurikenImage.gameObject.SetActive(false);
         }
-     
+
+       // shurikenImage.gameObject.SetActive(false);
+
     }
-    
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("DashSign"))
@@ -47,9 +52,10 @@ public class PlayerGetAbilities : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("ShurikenSign"))
         {
-            playerCombatControlScript.enabled = true;
+            weaponScript.enabled = true;
             PlayerPrefs.SetInt("GetShuriken", 1);
             PlayerPrefs.Save();
+            shurikenImage.gameObject.SetActive(true);
         }
         if (collision.gameObject.CompareTag("DoubleJump"))
         {

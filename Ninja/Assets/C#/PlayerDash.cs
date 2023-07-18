@@ -20,6 +20,9 @@ public class PlayerDash : MonoBehaviour
     private HealthController healthController;
     private Animator anim;
 
+    private AudioSource audioSource;
+    public AudioClip dashSound;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,6 +30,7 @@ public class PlayerDash : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         healthController = GetComponent<HealthController>();
         tr = GetComponentInChildren<TrailRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         originalSpeed = playerController.movementSpeed;
     }
@@ -48,6 +52,7 @@ public class PlayerDash : MonoBehaviour
     {
         if (CanDash())
         {
+            audioSource.PlayOneShot(dashSound);
             canDash = false;
             isDash = true;
             anim.SetTrigger("dash");

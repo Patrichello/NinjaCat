@@ -10,8 +10,12 @@ public class KeyQuest : MonoBehaviour
     public int keyAmountLeft;
     public bool questComplete;
 
+    private AudioSource audioSource;
+    public AudioClip keySound;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         keyImage.gameObject.SetActive(false);
     }
     void Update()
@@ -27,6 +31,7 @@ public class KeyQuest : MonoBehaviour
     
     public void GetKey()
     {
+        audioSource.PlayOneShot(keySound);
         keyAmount++;
     }
    

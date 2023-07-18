@@ -16,17 +16,26 @@ public class HealthController : MonoBehaviour
     private Animator anim;
     private GameProgress gameProgress;
     private GameOver gameOver;
+    private AudioSource audioSource;
+    public AudioClip gameOverSound;
+    public AudioClip hurtSound;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         gameProgress = FindObjectOfType<GameProgress>();
         gameOver = FindObjectOfType<GameOver>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         HealthControl();
+
+        if (playerDead)
+        {
+            audioSource.PlayOneShot(gameOverSound);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -36,6 +45,7 @@ public class HealthController : MonoBehaviour
         if (!playerDead)
         {
             anim.SetTrigger("hurt");
+            audioSource.PlayOneShot(hurtSound);
 
         }
         if (health <= 0)

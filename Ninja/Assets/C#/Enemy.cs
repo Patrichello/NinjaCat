@@ -45,6 +45,12 @@ public class Enemy : MonoBehaviour
     private bool isPatrol;
     private bool damageSet;
 
+    public bool isDead;
+
+    private AudioSource audioSource;
+    public AudioClip hurtEnemySound;
+    public AudioClip dieEnemySound;
+
     void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
@@ -53,6 +59,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         healthController = FindAnyObjectByType<HealthController>();
         scoreManager = FindObjectOfType<ScoreManager>();
+        audioSource = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;
         normalSpeed = speed;
@@ -69,6 +76,10 @@ public class Enemy : MonoBehaviour
 
         anim.SetBool("isWalking", isWalking);
         distanceToPlayer = Vector2.Distance(transform.position, playerPos.position);
+        if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -103,6 +114,7 @@ public class Enemy : MonoBehaviour
         currentHealth -= damage;
 
         anim.SetTrigger("Hurt");
+        audioSource.PlayOneShot(hurtEnemySound);
 
         if (currentHealth <= 0)
         {
@@ -113,7 +125,9 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        isDead = true;
         anim.SetBool("isDead", true);
+        audioSource.PlayOneShot(dieEnemySound);
 
         GetComponent<Collider2D>().enabled = false;
         Destroy(GetComponent<Rigidbody2D>());
@@ -195,8 +209,18 @@ public class Enemy : MonoBehaviour
         isAttacking = true;
         anim.SetTrigger("Attack");
 
-        yield return new WaitForSeconds(attackDuration);
-        healthController.GetComponent<HealthController>().TakeDamage(damage);
+        yield return new WaitForSeconds(0.25f);
+
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPos.position, attackRange, player);
+        if(hitPlayer != null)
+        {
+            Debug.Log("damage");
+            healthController.TakeDamage(damage);
+        }
+        //foreach(Collider2D player in hitPlayer)
+        //{
+        //    healthController.TakeDamage(damage);
+        //}
         isAttacking = false;
     }
 

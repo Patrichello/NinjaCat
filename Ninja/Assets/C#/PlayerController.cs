@@ -47,7 +47,9 @@ public class PlayerController : MonoBehaviour
 
     private bool canInput = true;
 
-
+    private AudioSource audioSource;
+    public AudioClip jumpSound;
+ 
     void Start()
     {
         amountOfJumpsLeft = amountOfJumps;
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
         gameProgress = FindObjectOfType<GameProgress>();
         gameOver = FindObjectOfType<GameOver>();
         playerDash = GetComponent<PlayerDash>();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
         canJump = isGrounded || isTouchingWall;
     }
+
     private void CheckMovementDirection()
     {
         if (isFacingRight && movementInputDirection < 0)
@@ -100,9 +104,12 @@ public class PlayerController : MonoBehaviour
                 Flip();
             }
             isWalking = Mathf.Abs(rb.velocity.x) >= 0.01f ? true : false;
-           
-    }
 
+        
+     
+
+    }
+  
     private void Flip()
     {
         if (!isWallSliding)
@@ -117,7 +124,6 @@ public class PlayerController : MonoBehaviour
         if (CanInput())
         {
             movementInputDirection = Input.GetAxisRaw("Horizontal");
-         
 
             if (Input.GetButtonDown("Jump"))
             {
@@ -143,6 +149,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             amountOfJumpsLeft--;
+            audioSource.PlayOneShot(jumpSound);
+
         }
         if (wallJump && jumpsOnTheWall > 0 || canJump)
         {
@@ -150,6 +158,8 @@ public class PlayerController : MonoBehaviour
             jumpsOnTheWall--;
             // amountOfJumpsLeft = 0;
             amountOfJumpsLeft--;
+            audioSource.PlayOneShot(jumpSound);
+
         }
     }
 

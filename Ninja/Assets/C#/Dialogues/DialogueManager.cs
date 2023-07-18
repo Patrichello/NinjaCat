@@ -20,6 +20,8 @@ public class DialogueManager : MonoBehaviour
     public bool senseiFinishTalk;
 
     private ScoreManager scoreManager;
+    public bool finishGame;
+    public GameObject dialogBoxToDisappear;
 
     private void Start()
     {
@@ -91,7 +93,10 @@ public class DialogueManager : MonoBehaviour
 
         if (senseiToDisappear != null)
         {
+            dialogBoxToDisappear.SetActive(false);
             senseiToDisappear.SetActive(false);
+            finishGame = true;
+
         }
     }
 }
