@@ -1,6 +1,6 @@
 # Ninja Cat - 2D Platformer Unity Game
 
-![Gameplay](Screenshot2)
+![Gameplay](Screenshot2.png)
 
 Welcome to Ninja Cat, an exciting 2D platformer Unity game where you play as a ninja cat! Explore a world filled with challenges, unlock new abilities, and defeat enemies to become the ultimate ninja cat.
 
@@ -18,7 +18,7 @@ Welcome to Ninja Cat, an exciting 2D platformer Unity game where you play as a n
 
 ## Gameplay Screenshots
 
-![Screenshot 1](Screenshot4)
-![Screenshot 2](Screenshot3)
-![Screenshot 3](Screenshot5)
-![Screenshot 3](Screenshot6)
+![Screenshot 1](Screenshot4.png)
+![Screenshot 2](Screenshot3.png)
+![Screenshot 3](Screenshot5.png)
+![Screenshot 3](Screenshot6.png)
